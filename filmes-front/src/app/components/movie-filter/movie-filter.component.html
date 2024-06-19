@@ -1,0 +1,55 @@
+<div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <form (ngSubmit)="onSubmit()">
+          <div class="movie-filter">
+            <h2>Filtro</h2>
+            
+            <button type="button" class="btn btn-sm btn-outline-secondary">Meus Favoritos</button>
+
+            <div class="form-group">
+              <label for="pesquisa">Tipo:</label>
+              <select id="pesquisa" name="pesquisa" class="form-control" [(ngModel)]="tipoSelecionado">
+                <option value="todos">Todos</option>
+                <option value="populares">Populares</option>
+                <option value="em_exibicao">Em Exibição</option>
+                <option value="brevemente">Brevemente</option>
+                <option value="melhor_classificacao">Melhor Classificação</option>
+              </select>
+            </div>
+            <!--
+            <div class="form-group">
+              <label for="adult">Classificação:</label>
+              <select id="adult" class="form-control">
+                <option value="false">Proibido para Menores</option>
+                <option value="true">Permitido para Maiores</option>          
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="genre">Gênero:</label>
+              <select id="genre" class="form-control">
+                <option *ngFor="let genre of genres" [value]="genre.id">{{ genre.name }}</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="language">Língua:</label>
+              <select id="language" class="form-control">
+                <option *ngFor="let lang of langs" [value]="lang.iso_639_1">{{ lang.english_name }}</option>         
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="title">Título:</label>
+              <input type="text" id="title" class="form-control" [(ngModel)]="filters.title">
+            </div>
+            <div class="form-group">
+              <label for="releaseDate">Data de Lançamento:</label>
+              <input type="text" id="releaseDate" class="form-control" [(ngModel)]="filters.releaseDate" appDateFormatter>
+            </div> 
+            -->   
+            <button type="submit" class="btn btn-primary">Filtrar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  

@@ -1,0 +1,56 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-8">
+      <h3 class="mb-3">Pesquisa</h3>
+    </div>
+    <div class="col-md-4">
+      <button type="button" class="btn btn-sm btn-outline-secondary px-5 mb-5 w-100" (click)="meusFavoritos()">Meus Favoritos</button>
+    </div>
+  </div>
+  
+  <div class="row">
+    <form class="d-flex align-items-end w-100" (ngSubmit)="onSubmit()">
+      <div class="col-md-11">
+        <div class="form-group mb-0">
+          <label for="pesquisa">Filtro:</label>
+          <select id="pesquisa" name="pesquisa" class="form-control" [(ngModel)]="tipoSelecionado">
+            <option value="todos">Todos</option>
+            <option value="populares">Populares</option>
+            <option value="em_exibicao">Em Exibição</option>
+            <option value="brevemente">Brevemente</option>
+            <option value="melhor_classificacao">Melhor Classificação</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-md-1 d-flex align-items-end">
+        <button type="submit" class="btn btn-primary ml-20">Filtrar</button>
+      </div>
+    </form>
+  </div>
+  
+  <h3 class="mt-4">Filmes</h3>  
+  <div class="row">
+    <div *ngFor="let movie of movies" class="col-md-4">
+      <div class="card mb-4 shadow-sm">
+        <img class="card-img-top" [src]="getMovieImage(movie.poster_path)" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title">{{ movie.title }}</h5>
+          <p class="card-text">{{ movie.overview | truncate: 100 }}</p>
+          <div class="d-flex justify-content-between align-items-center">
+            <div class="btn-group">
+              <button type="button" class="btn btn-sm btn-outline-secondary" (click)="viewDetails(movie.id)">Detalhes</button>
+            </div>
+            <small class="text-muted">{{ movie.release_date | date: 'dd/MM/yyyy' }}</small>
+            <div class="icons-container">
+              <i class="fa fa-eye" [ngClass]="{'text-danger': movie.assistido, 'text-black': !movie.assistido}" (click)="markAsWatched(movie)" title="Assistido"></i>
+              <i class="fa fa-star" [ngClass]="{'text-danger': movie.favorito, 'text-black': !movie.favorito}" (click)="markAsFavorite(movie)" title="Favorito"></i>
+              <i class="fa fa-list-alt" [ngClass]="{'text-danger': movie.pretendido, 'text-black': !movie.pretendido}" (click)="markAsWantToWatch(movie)" title="Para Assistir"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  

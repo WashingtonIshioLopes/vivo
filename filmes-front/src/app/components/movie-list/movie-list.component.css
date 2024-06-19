@@ -1,0 +1,3 @@
+.icons-container i:not(:last-child) {
+    margin-right: 15px; /* Ajuste o valor conforme necessário */
+  }
