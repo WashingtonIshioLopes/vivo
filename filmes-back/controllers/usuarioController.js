@@ -8,17 +8,20 @@ const register = (req, res) => {
   
   userModel.findUserByCPF(newUser.CPF, (err, existingUser) => {
     if (err) {
+      console.log('There was a problem checking for existing user.');
       console.log(err);
       return res.status(500).send('There was a problem checking for existing user.');
     }
     
     if (existingUser) {
+      console.log('User already exists.');
       return res.status(400).send('User already exists.');
     }  
   });
 
   userModel.createUser(newUser, (err, result) => {
     if (err) {
+      console.log('There was a problem registering the user.');
       console.log(err);
       return res.status(500).send('There was a problem registering the user.');
     }
@@ -31,21 +34,23 @@ const login = (req, res) => {
   const { CPF, Senha } = req.body;
   userModel.findUserByCPF(CPF, (err, user) => {
     if (err) {
+      console.log('Error on the server.');
       return res.status(500).send('Error on the server.');
     }
     if (!user) {
+      console.log('No user found.');
       return res.status(404).send('No user found.');
     }
-
-    console.log(req.body);
     
     const passwordIsValid = bcrypt.compareSync(Senha, user.Senha);
     if (!passwordIsValid) {
+      console.log("Password invalid !");
       return res.status(401).send({ auth: false, token: null });
     }
 
     const token = jwt.sign({ id: user.Id }, config.secret, { expiresIn: config.expiresIn });
     res.status(200).send({ auth: true, token });
+    console.log("LOGIN OK");
   });
 };
 
@@ -59,16 +64,16 @@ const login2 = (req, res) => {
     if (!user) {
       return res.status(404).send('No user found.');
     }
-
-    console.log(req.body);
     
     const passwordIsValid = bcrypt.compareSync(Senha, user.Senha);
     if (!passwordIsValid) {
+      console.log("Password invalid !");
       return res.status(401).send({ auth: false, token: null });
     }
 
     const token = jwt.sign({ id: user.Id }, config.secret, { expiresIn: config.expiresIn });
     res.status(200).send({ auth: true, token });
+    console.log("LOGIN OK");
   });
 };
 

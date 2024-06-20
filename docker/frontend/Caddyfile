@@ -1,7 +1,0 @@
-localhost
-
-# Servir arquivos estáticos da aplicação Angular
-file_server /usr/share/caddy/html
-
-# Configuração para redirecionar para o backend (opcional)
-reverse_proxy /api/* http://backend:3000

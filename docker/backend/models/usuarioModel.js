@@ -9,6 +9,8 @@ const createUser = async (user, callback) => {
     const [result] = await pool.query(`INSERT INTO usuarios (Nome, CPF, Telefone, Email, Senha, Status, DtCreated, DtUpdated, DtDeleted) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`, [user.Nome, user.CPF, user.Telefone, user.Email, hashedPassword, user.Status, dtNow, null, null]);
     callback(null, { Id: result.insertId });
   } catch (err) {
+    console.log('Exception');
+    console.log(err);    
     callback(err);
   }
 };
@@ -18,6 +20,8 @@ const findUserById = async (id, callback) => {
     const [rows] = await pool.query(`SELECT * FROM usuarios WHERE Id = ? AND DtDeleted IS NULL`, [id]);
     callback(null, rows[0]);
   } catch (err) {
+    console.log('Exception');
+    console.log(err);    
     callback(err);
   }
 };
@@ -27,6 +31,8 @@ const findUserByCPF = async (cpf, callback) => {
     const [rows] = await pool.query(`SELECT * FROM usuarios WHERE CPF = ? AND DtDeleted IS NULL`, [cpf]);
     callback(null, rows[0]);
   } catch (err) {
+    console.log('Exception');
+    console.log(err);    
     callback(err);
   }
 };

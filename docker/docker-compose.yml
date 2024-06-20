@@ -7,10 +7,12 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: W14i05l77!
       MYSQL_DATABASE: db_washington
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: W14i05l77!      
     volumes:
       - ./db/script.sql:/docker-entrypoint-initdb.d/script.sql
     ports:
-      - "3306:3306"
+      - "3306:3306"   
 
   backend:
     container_name: backend_container
@@ -30,4 +32,5 @@ services:
     volumes:
       - ./frontend/dist/filmes-app:/usr/share/nginx/html
     depends_on:
-      - backend      
+      - backend   
+ 
