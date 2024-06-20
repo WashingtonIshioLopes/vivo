@@ -23,12 +23,11 @@ services:
       - db
 
   frontend:
-    image: caddy:latest
-    container_name: caddy_container
+    image: nginx:alpine
+    container_name: nginx_container
     ports:
-      - "80:80"
+      - "8000:80"
     volumes:
-      - ./frontend/Caddyfile:/etc/caddy/Caddyfile
-      - ./frontend/dist/filmes-app:/usr/share/caddy/html # Altere para o diretório onde sua aplicação Angular está compilada
+      - ./frontend/dist/filmes-app:/usr/share/nginx/html
     depends_on:
-      - backend
+      - backend      

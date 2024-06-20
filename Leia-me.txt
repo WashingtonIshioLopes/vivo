@@ -1,0 +1,4 @@
+node v20.14.0
+angular 15.2.11
+mysql 8.0
+docker desktop 4.30.0
